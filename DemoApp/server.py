@@ -11,8 +11,10 @@ def handle_event(event_id):
         with open('app/data/event/%d.json' % event_id, 'r') as f:
             return Response(f.read(), mimetype='application/json')
     elif request.json is not None:
+        jsondata = json.dumps(request.json)
         with open('app/data/event/%d.json' % event_id, 'w') as f:
-            f.write(json.dumps(request.json))
+            f.write(jsondata)
+        return Response(jsondata, mimetype='application/json')
 
 
 @app.route('/js/<path:path>')
@@ -40,6 +42,10 @@ def send_img(path):
     return send_from_directory('app/img', path)
 
 
+@app.route('/favicon.ico')
+def send_favicon():
+    return send_from_directory('app', 'favicon.ico')
+
+
 if __name__ == '__main__':
     app.run()
-

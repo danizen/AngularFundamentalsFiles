@@ -1,13 +1,16 @@
 'use strict';
 
 eventsApp.controller('EditEventController',
-  function($scope) {
+  function($scope, eventData) {
 
     $scope.datePattern = '\d\d/\d\d/\d\d\d\d';
 
     $scope.saveEvent = function(event, newEventForm) {
       if (newEventForm.$valid) {
-        window.alert('event ' + event.name + ' saved');
+        eventData.save(event)
+          .$promise
+          .then(function(response) { console.log('success', response); })
+          .catch(function(response) { console.log('failure', response); });
       }
     };
 
