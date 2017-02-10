@@ -1,15 +1,9 @@
+'use strict';
 
-eventsApp.factory('eventData', function ($http, $log) {
+eventsApp.factory('eventData', function ($resource) {
   return {
-    getEvent: function(successcb) {
-      $http({ method: 'GET', url: '/data/event/1' })
-        .success(function(data, status, headers, config) {
-          successcb(data);
-        })
-        .error(function(data, status, headers, config) {
-          $log.warn(data, status, headers, config);
-        });
-      }
-    };
-  }
-);
+    getEvent: function() {
+      return $resource('/data/event/:id', {id: '@id'}).get({id: 1});
+    }
+  };
+});
