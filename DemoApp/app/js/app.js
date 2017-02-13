@@ -4,13 +4,13 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/newEvent',
       {
-        template: function() { return $('#eventedit-template').html(); },
+        template: function() { return angular.element('#eventedit-template').html(); },
         controller: 'EditEventController',
       });
 
     $routeProvider.when('/events',
       {
-        template: function() { return $('#eventlist-template').html(); },
+        template: function() { return angular.element('#eventlist-template').html(); },
         controller: 'EventListController',
         resolve: {
           events: function(eventData) { return eventData.getAllEvents().$promise; }
@@ -19,7 +19,7 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute'])
 
     $routeProvider.when('/event/:eventId',
       {
-        template: function() { return $('#eventview-template').html(); },
+        template: function() { return angular.element('#eventview-template').html(); },
         controller: 'EventController',
         resolve: {
           event: function($route, eventData) { return eventData.getEvent($route.current.pathParams.eventId).$promise; }
@@ -28,8 +28,14 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute'])
 
     $routeProvider.when('/profile',
       {
-        template: function() { return $('#profile-template').html(); },
+        template: function() { return angular.element('#profile-template').html(); },
         controller: 'EditProfileController'
+      });
+
+    $routeProvider.when('/sampleDirective',
+      {
+        template: function() { return angular.element('#sample-template').html(); },
+        controller: 'SampleDirectiveController'
       });
 
     $routeProvider.otherwise({ redirectTo: '/events' });
