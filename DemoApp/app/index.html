@@ -35,5 +35,39 @@
   <script src="/js/services/EventData.js"></script>
   <script src="/lib/bootstrap.min.js"></script>
 
+  <script id="newevent-template" type="text/template">
+    <div class="myevent">
+      <div class="container">
+        <h1>New Event (from template)</h1>
+        <hr />
+        <form name="newEventForm">
+          <fieldset>
+            <label for="eventName">Name:</label>
+            <input id="eventName" type="text" required ng-model="event.name" placeholder="Name..."/>
+            <label for="eventDate">Date:</label>
+            <input id="eventDate" type="text" required ng-pattern="/\d\d\/\d\d\/\d\d\d\d/" ng-model="event.date" placeholder="format (mm/dd/yyyy)..."/>
+            <label for="eventTime">Time:</label>
+            <input id="eventTime" type="text" ng-model="event.time" placeholder="start and end time"/>
+            <label for="eventLocation">Location:</label>
+            <input id="eventLocation" type="text" ng-model="event.location.address" placeholder="Address..."/>
+            <br />
+            <input id="eventCity" type="text" ng-model="event.location.city" class="input-small" placeholder="City..."/>
+            <input id="eventProvince" type="text" ng-model="event.location.province" class="input-small" placeholder="Province..."/>
+            <label for="eventImageUrl">Image:</label>
+            <input id="eventImageUrl" type="url" ng-model="event.imageUrl" class="input-xlarge" placeholder="URL of image..."/>
+          </fieldset>
+          <img ng-src="{{event.imageUrl}}" src="" />
+          <br/>
+          <br/>
+          <button type="submit" class="btn btn-primary" ng-disabled="newEventForm.$invalid" ng-click="saveEvent(event, newEventForm)">Save</button>
+          <button type="button" class="btn btn-default" ng-click="cancelEvent()">Cancel</button>
+
+          <hr/>
+          input valid? = <code>{{newEventForm.$valid}}</code><br/>
+        </form>
+      </div>
+    </div>
+  </script>
+
 </body>
 </html>
