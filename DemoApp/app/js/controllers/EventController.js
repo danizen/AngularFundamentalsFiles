@@ -1,14 +1,10 @@
 'use strict';
 
 eventsApp.controller('EventController',
-  function ($scope, eventData, $routeParams, $route) {
+  function ($scope, $route) {
     $scope.sortorder = 'name';
 
-    eventData.getEvent($routeParams.eventId)
-      .$promise.then(
-        function(event) { $scope.event = event; console.log(event); },
-        function(response) { console.log(response); }
-      );
+    $scope.event = $route.current.locals.event;
 
     $scope.reload = function() {
       $route.reload();

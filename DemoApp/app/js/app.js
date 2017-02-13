@@ -4,19 +4,34 @@ var eventsApp = angular.module('eventsApp', ['ngResource', 'ngRoute'])
   .config(function($routeProvider, $locationProvider) {
     $routeProvider.when('/newEvent',
       {
-        template: function() { return $('#newevent-template').html(); },
-        controller: 'EditEventController'
+        template: function() { return $('#eventedit-template').html(); },
+        controller: 'EditEventController',
       });
+
     $routeProvider.when('/events',
       {
-        templateUrl: 'templates/EventList.html',
-        controller: 'EventListController'
+        template: function() { return $('#eventlist-template').html(); },
+        controller: 'EventListController',
+        resolve: {
+          events: function(eventData) { return eventData.getAllEvents().$promise; }
+        }
       });
+
     $routeProvider.when('/event/:eventId',
       {
-        templateUrl: 'templates/EventDetails.html',
-        controller: 'EventController'
+        template: function() { return $('#eventview-template').html(); },
+        controller: 'EventController',
+        resolve: {
+          event: function($route, eventData) { return eventData.getEvent($route.current.pathParams.eventId).$promise; }
+        }
       });
+
+    $routeProvider.when('/profile',
+      {
+        template: function() { return $('#profile-template').html(); },
+        controller: 'EditProfileController'
+      });
+
     $routeProvider.otherwise({ redirectTo: '/events' });
 
     $locationProvider.html5Mode(true);
