@@ -1,5 +1,6 @@
 from flask import Flask, Response, request, send_from_directory
 import simplejson as json
+import glob
 
 
 app = Flask(__name__)
@@ -15,6 +16,21 @@ def handle_event(event_id):
         with open('app/data/event/%d.json' % event_id, 'w') as f:
             f.write(jsondata)
         return Response(jsondata, mimetype='application/json')
+
+
+@app.route('/data/event/', methods=['GET'])
+def get_all_events():
+    events = []
+    for eventfile in glob.glob('app/data/event/*.json'):
+        with open(eventfile, 'r') as f:
+            eventdata = json.load(f)
+            events.append(eventdata)
+    return Response(json.dumps(events), mimetype='application/json')
+
+
+@app.route('/')
+def send_index():
+    return send_from_directory('app', 'index.html')
 
 
 @app.route('/js/<path:path>')

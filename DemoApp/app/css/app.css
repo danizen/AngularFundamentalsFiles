@@ -8,6 +8,8 @@
   display: none;
 }
 
+input.ng-invalid.ng-dirty { background-color: pink; }
+
 /* app css stylesheet */
 .hoverwell:hover {
   background-color: #52575c;
