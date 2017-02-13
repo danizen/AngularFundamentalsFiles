@@ -28,11 +28,6 @@ def get_all_events():
     return Response(json.dumps(events), mimetype='application/json')
 
 
-@app.route('/')
-def send_index():
-    return send_from_directory('app', 'index.html')
-
-
 @app.route('/js/<path:path>')
 def send_js(path):
     return send_from_directory('app/js', path)
@@ -61,6 +56,16 @@ def send_img(path):
 @app.route('/favicon.ico')
 def send_favicon():
     return send_from_directory('app', 'favicon.ico')
+
+
+@app.route('/')
+def send_index():
+    return send_from_directory('app', 'index.html')
+
+
+@app.route('/<path:path>')
+def send_index_as_default(path):
+    return send_from_directory('app', 'index.html')
 
 
 if __name__ == '__main__':
