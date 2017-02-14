@@ -1,6 +1,8 @@
-'use strict';
+(function() {
+  'use strict';
 
-eventsApp.controller('SampleDirectiveController',
-  function($scope) {
-  }
-);
+  eventsApp.controller('SampleDirectiveController',
+    function($scope) {
+    }
+  );
+})();
