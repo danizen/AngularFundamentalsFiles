@@ -11,19 +11,13 @@ var eventsApp = (function(){
       $routeProvider.when('/events',
         {
           template: angular.element('#eventlist-template').html(),
-          controller: 'EventListController',
-          resolve: {
-            events: function(eventData) { return eventData.getAllEvents().$promise; }
-          }
+          controller: 'EventListController'
         });
 
       $routeProvider.when('/event/:eventId',
         {
           template: function() { return angular.element('#eventview-template').html(); },
-          controller: 'EventController',
-          resolve: {
-            event: function($route, eventData) { return eventData.getEvent($route.current.pathParams.eventId).$promise; }
-          }
+          controller: 'EventController'
         });
 
       $routeProvider.when('/profile',

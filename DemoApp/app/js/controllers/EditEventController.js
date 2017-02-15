@@ -1,27 +1,28 @@
-(function() {
-  'use strict';
-  eventsApp.controller('EditEventController',
-    function($scope, eventData, $location) {
+/* jshint -W097 */
+/* globals eventsApp, console */
+'use strict';
 
-      $scope.datePattern = '\d\d/\d\d/\d\d\d\d';
+eventsApp.controller('EditEventController',
+  function($scope, eventData, $location) {
 
-      $scope.saveEvent = function(event, newEventForm) {
-        if (newEventForm.$valid) {
-          eventData.save(event)
-            .$promise
-            .then(function(response) { 
-              console.log('success', response); 
-              $location.path('/events');
-            })
-            .catch(function(response) { 
-              console.log('failure', response); 
-            });
-        }
-      };
+    $scope.datePattern = '\d\d/\d\d/\d\d\d\d';
 
-      $scope.cancelEvent = function() {
-        $location.path('/events');
-      };
-    }
-  );
-})();
+    $scope.saveEvent = function(event, newEventForm) {
+      if (newEventForm.$valid) {
+        eventData.save(event)
+          .$promise
+          .then(function(response) {
+            console.log('success', response);
+            $location.path('/events');
+          })
+          .catch(function(response) {
+            console.log('failure', response);
+          });
+      }
+    };
+
+    $scope.cancelEvent = function() {
+      $location.path('/events');
+    };
+  }
+);

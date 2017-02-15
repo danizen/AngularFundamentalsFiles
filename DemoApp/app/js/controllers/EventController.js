@@ -2,10 +2,10 @@
   'use strict';
 
   eventsApp.controller('EventController',
-    function ($scope, $route) {
+    function ($scope, $route, eventData) {
       $scope.sortorder = 'name';
 
-      $scope.event = $route.current.locals.event;
+      $scope.event = eventData.getEvent($route.current.pathParams.eventId);
 
       $scope.reload = function() {
         $route.reload();

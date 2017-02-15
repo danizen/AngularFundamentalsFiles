@@ -4,6 +4,7 @@ module.exports = function(config){
     basePath : '../app',
 
     files : [
+      'lib/jquery.min.js',
       'lib/angular/angular.js',
       'lib/angular/angular-*.js',
       '../test/lib/angular-mocks.js',
@@ -16,10 +17,10 @@ module.exports = function(config){
 
     frameworks: ['jasmine'],
 
-    browsers : ['PhantomJS'],
+    browsers : ['Chrome'],
 
     plugins : [
-      'karma-phantomjs-launcher',
+      'karma-chrome-launcher',
       'karma-jasmine'
     ],
 

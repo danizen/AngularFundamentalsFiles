@@ -2,8 +2,8 @@
   'use strict';
 
   eventsApp.controller('EventListController',
-    function EventListcontroller($scope, $location, $route) {
-      $scope.events = $route.current.locals.events;
+    function EventListcontroller($scope, eventData) {
+      $scope.events = eventData.getAllEvents();
     }
   );
 })();
