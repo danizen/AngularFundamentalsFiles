@@ -4,7 +4,8 @@
     return {
       restrict: 'E',
       replace: true,
-      template: angular.element('#eventthumb-template').html()
+      template: angular.element('#eventthumb-template').html(),
+      scope: { event: '=' }
     };
   });
 })();

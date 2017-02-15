@@ -10,7 +10,7 @@ var eventsApp = (function(){
 
       $routeProvider.when('/events',
         {
-          template: function() { return angular.element('#eventlist-template').html(); },
+          template: angular.element('#eventlist-template').html(),
           controller: 'EventListController',
           resolve: {
             events: function(eventData) { return eventData.getAllEvents().$promise; }
