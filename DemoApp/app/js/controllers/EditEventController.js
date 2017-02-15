@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   eventsApp.controller('EditEventController',
-    function($scope, eventData) {
+    function($scope, eventData, $location) {
 
       $scope.datePattern = '\d\d/\d\d/\d\d\d\d';
 
@@ -9,13 +9,18 @@
         if (newEventForm.$valid) {
           eventData.save(event)
             .$promise
-            .then(function(response) { console.log('success', response); })
-            .catch(function(response) { console.log('failure', response); });
+            .then(function(response) { 
+              console.log('success', response); 
+              $location.path('/events');
+            })
+            .catch(function(response) { 
+              console.log('failure', response); 
+            });
         }
       };
 
       $scope.cancelEvent = function() {
-        window.location = '/EventDetails.html';
+        $location.path('/events');
       };
     }
   );

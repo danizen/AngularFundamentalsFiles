@@ -63,7 +63,7 @@
   <script id="eventedit-template" type="text/template">
     <div class="myevent">
       <div class="container">
-        <h1>New Event (from template)</h1>
+        <h1>New Event</h1>
         <hr />
         <form name="newEventForm">
           <fieldset>
@@ -85,10 +85,9 @@
           <br/>
           <br/>
           <button type="submit" class="btn btn-primary" ng-disabled="newEventForm.$invalid" ng-click="saveEvent(event, newEventForm)">Save</button>
-          <button type="button" class="btn btn-default" ng-click="cancelEvent()">Cancel</button>
-
-          <hr/>
-          input valid? = <code>{{newEventForm.$valid}}</code><br/>
+          <button type="button" class="btn btn-default" ng-click="cancelEvent()">
+            Cancel
+          </button>
         </form>
       </div>
     </div>
